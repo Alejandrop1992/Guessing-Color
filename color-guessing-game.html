@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Guessing Game</title>
+</head>
+<body>
+
+    <h1>Color Guessing Game</h1>
+
+<button type="button" onclick="runGame()">Start Game
+
+<script>
+var COLORS_ARRAY = ['blue','cyan','gold','gray','green','magenta','orange','red','white','yellow']
+
+function runGame() {
+let numTries = 0
+let guess = ""
+let correct = false
+const targetIndex = Math.floor(Math.random() * (COLORS_ARRAY.length - 0) ) + 0
+const target = COLORS_ARRAY[targetIndex]
+console.log(target)
+
+do {
+guess = prompt("I am thinking of one of these colors:\n\n" + COLORS_ARRAY + '\n\n What color am I thinking of?\n')
+
+numTries += 1
+if(guess === null) {
+document.getElementById("res").innerHTML = "Game Ends".fontcolor("red")
+return
+}
+
+correct = checkGuess(guess,target)
+} while (!correct);
+document.body.style.background = guess;
+alert("Congratulations!!."+"Color is guessed in "+numTries)
+return
+}
+
+function checkGuess(guess,target) {
+let correct = false
+if(COLORS_ARRAY.includes(guess)) {
+if(guess > target) {
+console.log("Guess is Higher!! Re-Try")
+} else if(guess < target) {
+console.log("Guess is Lower!! Re-Try")
+} else {
+correct = true
+}
+} else {
+console.log("Color not found!! Re-Try")
+}
+return correct
+}
+
+    </script>
+    </button>
+
+    <h3 id="res"></h3>
+</body>
+</html>
